@@ -21,6 +21,8 @@ button_reset:
   other: "\U0001F525 Reset pack"
 button_share:
   other: Use your stickers pack!
+button_stats:
+  other: "\U0001F4CA Statistics"
 cancel_add_pack:
   other: You cancelled the process of adding a new packs to yours.
 cancel_add_sticker:
@@ -86,6 +88,13 @@ reply_start:
     Hello, I'm the [@{{.Username}}](tg://user?id={{.ID}})!
     I can create your personal pack with stickers from others packs.
     Without limits and installing. In any chat. For free.
+reply_stats:
+  other: |-
+    *Users:* {{.Users}}
+
+    *Files:* {{.Files}}
+    *Stickers:* {{.Stickers}}
+    *Sets:* {{.Sets}}
 reply_switch_button:
   other: This button will help you quickly call your pack to select the sticker you
     want.

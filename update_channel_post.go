@@ -11,6 +11,7 @@ import (
 var waitForwards = new(sync.WaitGroup)
 
 func updateChannelPost(post *tg.Message) {
+	log.D(post)
 	if post.Chat.ID != channelID {
 		log.Ln(post.Chat.ID, "!=", channelID)
 		return

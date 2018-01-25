@@ -23,3 +23,5 @@ button_reset:
   other: 🔥 Сбросить набор
 button_cancel:
   other: ❌ Отменить
+button_stats:
+  other: 📊 Статистика

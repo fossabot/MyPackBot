@@ -27,14 +27,13 @@ func main() {
 	for update := range getUpdatesChannel() {
 		switch {
 		case update.IsInlineQuery():
-			log.D(update.InlineQuery)
 			updateInlineQuery(update.InlineQuery)
 		case update.IsMessage():
-			log.D(update.Message)
 			updateMessage(update.Message)
 		case update.IsChannelPost():
-			log.D(update.ChannelPost)
 			updateChannelPost(update.ChannelPost)
+		case update.IsChosenInlineResult():
+			updateChosenInlineResult(update.ChosenInlineResult)
 		default:
 			log.D(update)
 		}

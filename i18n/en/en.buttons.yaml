@@ -21,3 +21,5 @@ button_reset:
   other: 🔥 Reset pack
 button_cancel:
   other: ❌ Cancel
+button_stats:
+  other: 📊 Statistics

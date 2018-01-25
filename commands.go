@@ -11,11 +11,12 @@ const (
 	cmdAddPack       = "addPack"
 	cmdAddSticker    = "addSticker"
 	cmdCancel        = "cancel"
-	cmdHelp          = "help"
-	cmdDeleteSticker = "delSticker"
 	cmdDeletePack    = "delPack"
+	cmdDeleteSticker = "delSticker"
+	cmdHelp          = "help"
 	cmdReset         = "reset"
 	cmdStart         = "start"
+	cmdStats         = "stats"
 )
 
 func commands(msg *tg.Message) {
@@ -29,6 +30,8 @@ func commands(msg *tg.Message) {
 		commandAdd(msg, false)
 	case strings.ToLower(cmdAddPack):
 		commandAdd(msg, true)
+	case strings.ToLower(cmdStats):
+		commandStats(msg)
 	case strings.ToLower(cmdDeleteSticker):
 		commandDelete(msg, false)
 	case strings.ToLower(cmdDeletePack):
@@ -38,4 +41,5 @@ func commands(msg *tg.Message) {
 	case strings.ToLower(cmdCancel):
 		commandCancel(msg)
 	}
+	log.Ln("nothing?")
 }

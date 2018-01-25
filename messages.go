@@ -21,6 +21,8 @@ func messages(msg *tg.Message) {
 		commandDelete(msg, true)
 	case strings.EqualFold(msg.Text, T("button_reset")):
 		commandReset(msg)
+	case strings.EqualFold(msg.Text, T("button_stats")):
+		commandStats(msg)
 	case strings.EqualFold(msg.Text, T("button_cancel")):
 		commandCancel(msg)
 	case strings.EqualFold(msg.Text, T("meta_key_phrase")):

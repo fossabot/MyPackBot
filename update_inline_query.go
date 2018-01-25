@@ -8,6 +8,7 @@ import (
 )
 
 func updateInlineQuery(inlineQuery *tg.InlineQuery) {
+	log.D(inlineQuery)
 	fixedQuery, err := fixEmoji(inlineQuery.Query)
 	if err == nil {
 		inlineQuery.Query = fixedQuery

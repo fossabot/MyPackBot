@@ -6,6 +6,7 @@ import (
 )
 
 func updateMessage(msg *tg.Message) {
+	log.D(msg)
 	if bot.IsMessageFromMe(msg) || bot.IsForwardFromMe(msg) {
 		log.Ln("Ignore message update")
 		return
@@ -13,8 +14,10 @@ func updateMessage(msg *tg.Message) {
 
 	switch {
 	case bot.IsCommandToMe(msg):
+		log.Ln("isCommandToMe")
 		commands(msg)
-	case msg.Text != "":
+	case msg.IsText():
+		log.Ln("isCommandToMe")
 		messages(msg)
 	default:
 		actions(msg)

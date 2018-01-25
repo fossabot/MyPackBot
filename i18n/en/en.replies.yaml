@@ -29,3 +29,10 @@ reply_help:
     To view and send stickers from your pack, just type `@{{.Username}}` (and space) in any chat.
 reply_switch_button:
   other: This button will help you quickly call your pack to select the sticker you want.
+reply_stats:
+  other: |
+    *Users:* {{.Users}}
+
+    *Files:* {{.Files}}
+    *Stickers:* {{.Stickers}}
+    *Sets:* {{.Sets}}

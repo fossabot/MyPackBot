@@ -12,17 +12,17 @@ func commandHelp(msg *tg.Message) {
 	_, err = bot.SendChatAction(msg.Chat.ID, tg.ActionTyping)
 	errCheck(err)
 
-	reply := tg.NewMessage(
-		msg.Chat.ID, T("reply_help", map[string]interface{}{
-			"AddStickerCommand":    cmdAddSticker,
-			"AddPackCommand":       cmdAddPack,
-			"DeleteStickerCommand": cmdDeleteSticker,
-			"DeletePackCommand":    cmdDeletePack,
-			"ResetCommand":         cmdReset,
-			"CancelCommand":        cmdCancel,
-			"Username":             bot.Self.Username,
-		}),
-	)
+	text := T("reply_help", map[string]interface{}{
+		"AddStickerCommand":    cmdAddSticker,
+		"AddPackCommand":       cmdAddPack,
+		"DeleteStickerCommand": cmdDeleteSticker,
+		"DeletePackCommand":    cmdDeletePack,
+		"ResetCommand":         cmdReset,
+		"CancelCommand":        cmdCancel,
+		"Username":             bot.Self.Username,
+	})
+
+	reply := tg.NewMessage(msg.Chat.ID, text)
 	reply.ParseMode = tg.ModeMarkdown
 	reply.ReplyMarkup = getMenuKeyboard(T)
 

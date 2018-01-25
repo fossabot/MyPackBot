@@ -17,6 +17,19 @@ const (
 	stateDeletePack    = "delPack"
 	stateReset         = "reset"
 
+	statsFiles    = "files"    // Total number of WebP
+	statsStickers = "stickers" // Total number of stickers
+	statsSets     = "sets"     // Total number of sets
+	statsOpened   = "opens"    // Initialize inlineQuery to bot
+	statsViewed   = "views"    // Initialize next inlineQuery page
+	statsSended   = "sends"    // Select result from inlineQuery
+	statsAdded    = "adds"     // Use /addSticker or /addPack
+	statsRemoved  = "dels"     // Use /delSticker or /delPack
+	statsCanceled = "cancel"   // Use /cancel
+	statsReseted  = "resets"   // Use /reset
+	statsUsers    = "users"    // Total number of users
+	statsStarted  = "started"  // Unix time of first using the bot
+
 	setUploaded = "?"
 )
 
@@ -241,4 +254,43 @@ func dbGetUserStickers(userID, offset int, query string) ([]string, int, error) 
 	}
 
 	return stickers, total, nil
+}
+
+func dbGetPackStats(userID int) (*statistics, error) {
+	var stats statistics
+
+	err := db.View(func(tx *buntdb.Tx) error {
+		err := tx.AscendKeys("user:*:state", func(key, val string) bool {
+			stats.Users++
+			return true
+		})
+		if err != nil {
+			return err
+		}
+
+		var prev string
+		return tx.AscendKeys(
+			fmt.Sprint("user:", userID, ":set:*"),
+			func(key, val string) bool {
+				parts := strings.Split(key, ":")
+				set := parts[3]
+				if prev == "" {
+					stats.Sets++
+					prev = set
+				}
+
+				if set != prev {
+					stats.Sets++
+				}
+
+				if set == setUploaded {
+					stats.Files++
+				}
+
+				stats.Stickers++
+				return true
+			},
+		)
+	})
+	return &stats, err
 }

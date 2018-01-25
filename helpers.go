@@ -31,6 +31,7 @@ func getMenuKeyboard(T i18n.TranslateFunc) *tg.ReplyKeyboardMarkup {
 			tg.NewReplyKeyboardButton(T("button_del_pack")),
 		),
 		tg.NewReplyKeyboardRow(
+			tg.NewReplyKeyboardButton(T("button_stats")),
 			tg.NewReplyKeyboardButton(T("button_reset")),
 		),
 	)

@@ -8,6 +8,7 @@ import (
 )
 
 func commandStart(msg *tg.Message) {
+	log.Ln("start command")
 	err := dbChangeUserState(msg.From.ID, stateNone)
 	errCheck(err)
 
